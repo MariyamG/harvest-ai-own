@@ -1,0 +1,99 @@
+Project: AI Operational Optimization App for Coffee Shops
+Overview
+This project aims to build an AI-powered app to optimize coffee shop operations, including peak hour prediction, inventory management, staff scheduling, and layout suggestions. The app will feature a React.js frontend, a Supabase backend for data storage and management, and an AI model trained on Google Cloud AI Platform. It will integrate with the Clover Mini POS system for real-time sales data and include a key feature: end-of-day suggestions for operational improvements.
+
+Target Audience: Small to medium coffee shop owners, initially in Vancouver.
+Core Goals: Improve efficiency, reduce costs, and increase revenue through data-driven insights.
+Timeline: 12 weeks (initial MVP).
+Tech Stack
+Frontend
+Framework: React.js
+Reason: Lightweight, component-based, and widely supported for rapid UI development.
+Tools: Vite (for fast builds), Tailwind CSS (for styling), React Router (for navigation).
+Backend
+Platform: Supabase
+Reason: Open-source, provides PostgreSQL database, real-time APIs, and authentication out of the box. Scales well for small businesses and integrates seamlessly with React.
+Features Used: Database (for sales, inventory, staff data), Authentication (for user accounts), Realtime (for live updates).
+AI Platform
+Chosen Platform: Google Cloud AI Platform
+Reason: Robust infrastructure for training and deploying machine learning models, excellent support for time-series forecasting (peak hours), and integration with external APIs (weather, sales). Cost-effective for small-scale training with AutoML options.
+Model Type: Time-series forecasting (e.g., LSTM or Prophet) for predictions, regression for inventory/staff optimization.
+POS Integration
+System: Clover Mini
+Reason: Compact, powerful POS system widely used by small businesses, with robust APIs for real-time sales data, inventory tracking, and employee management. Supports EMV, NFC, and receipt printing, aligning with coffee shop needs.
+Integration: Clover REST API for fetching sales transactions, inventory updates, and staff hours.
+Additional Tools
+APIs:
+Weather API (e.g., OpenWeatherMap) for real-time weather data.
+Clover API (via Clover Developer SDK) for POS integration.
+Deployment: Vercel (frontend), Supabase hosting (backend), Google Cloud (AI model serving).
+Features
+Peak Hour Prediction
+Inputs: Historical sales (via Clover Mini), weather data, local events.
+Output: Hourly demand forecast (e.g., “Expect 50 customers 8-9 AM”).
+Inventory Management
+Inputs: Current stock (from Clover Mini), sales trends, supplier pricing.
+Output: Reorder alerts, waste reduction suggestions.
+Staff Scheduling
+Inputs: Demand forecast, staff hours (from Clover Mini), performance metrics.
+Output: Optimized shift schedules.
+Layout Optimization
+Inputs: Floorplan data, customer flow metrics (inferred from Clover Mini timestamps).
+Output: Simple layout tweak suggestions.
+End-of-Day Suggestions (New Feature)
+Inputs: Daily sales (from Clover Mini), inventory usage, staff hours, customer wait times.
+Output: Actionable insights (e.g., “Reduce staff by 1 tomorrow 2-4 PM,” “Push muffins—10 near expiry”).
+Project Plan
+Phase 1: Setup & Design (Weeks 1-2)
+Goals: Establish project structure, design UI/UX, set up backend.
+Tasks:
+Initialize React.js project with Vite: npm create vite@latest.
+Set up Tailwind CSS and basic components (Dashboard, Settings, Reports).
+Configure Supabase project: Create tables for users, sales, inventory, staff, layouts.
+Design wireframes: Simple dashboard with charts (peak hours), tables (inventory), and suggestion cards.
+Define API endpoints in Supabase (e.g., /sales, /inventory).
+Phase 2: Data Integration & Backend (Weeks 3-5)
+Goals: Connect data sources, build core backend logic.
+Tasks:
+Integrate Clover Mini API: Set up OAuth for merchant authentication, fetch real-time sales data (e.g., /v3/merchants/{mId}/orders).
+Add OpenWeatherMap API for weather data (store daily forecasts in Supabase).
+Build Supabase functions for data processing (e.g., aggregate Clover sales by hour).
+Set up real-time subscriptions for live updates (e.g., inventory changes from Clover Mini).
+Test data pipeline: Manual entry fallback if Clover Mini data unavailable.
+Phase 3: AI Model Development (Weeks 6-8)
+Goals: Train and deploy AI model for predictions.
+Tasks:
+Collect sample dataset: Synthetic sales data (from Clover Mini format), weather, staff hours.
+Preprocess data: Normalize, handle missing values, split into train/test sets.
+Train model on Google Cloud AI Platform:
+Use AutoML for initial peak hour predictions.
+Fine-tune with custom LSTM if needed (via Vertex AI).
+Deploy model as an endpoint (e.g., /predict/peak-hours).
+Integrate with Supabase: Store predictions in forecasts table.
+Phase 4: Frontend Development (Weeks 9-10)
+Goals: Build interactive UI, connect to backend/AI.
+Tasks:
+Create Dashboard page: Charts for peak hours (Recharts library), inventory status (from Clover Mini).
+Build Scheduling page: Drag-and-drop staff shifts, auto-suggestions from AI.
+Add Reports page: End-of-day suggestions (e.g., “Overstaffed by 2 hours today”).
+Implement Settings: Manual data entry, Clover Mini integration toggle.
+Test UI responsiveness across devices (mobile-first for on-the-go owners).
+Phase 5: Testing & Deployment (Weeks 11-12)
+Goals: Ensure stability, launch MVP.
+Tasks:
+Unit tests: React components (Jest), Supabase queries (Postman), Clover API calls.
+End-to-end tests: Simulate a day’s operations (Clover Mini sales → predictions → suggestions).
+Deploy frontend to Vercel, backend to Supabase, AI model to Google Cloud.
+Beta test with 2-3 Vancouver coffee shops: Collect feedback on usability, accuracy.
+Refine based on feedback: Adjust UI, tweak model if predictions off.
+End-of-Day Suggestions Implementation
+Logic:
+At 8 PM daily (configurable), the app runs a script via Supabase Edge Functions.
+Analyzes: Sales (from Clover Mini), inventory usage, staff hours, customer wait times (inferred from order timestamps).
+AI model scores inefficiencies (e.g., “Wait times spiked 20% at 10 AM”).
+Output:
+Stored in suggestions table: { date, suggestion, priority }.
+Displayed as cards on Reports page: “Tomorrow: Prep 10 extra cups 9-10 AM (High Priority)”.
+Tech:
+Supabase cron job triggers function.
+React fetches via useEffect on page load.

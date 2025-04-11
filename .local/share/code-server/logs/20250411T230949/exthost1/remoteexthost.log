@@ -1,0 +1,19 @@
+2025-04-11 19:09:54.576 [info] Extension host with pid 4718 started
+2025-04-11 19:09:54.590 [info] Lock '/home/ubuntu/.local/share/code-server/User/workspaceStorage/-1fe0963d/vscode.lock': Lock acquired.
+2025-04-11 19:09:54.788 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2025-04-11 19:09:54.891 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2025-04-11 19:09:54.892 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2025-04-11 19:09:55.262 [info] Eager extensions activated
+2025-04-11 19:09:55.262 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2025-04-11 19:09:55.262 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2025-04-11 19:09:55.488 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2025-04-11 19:09:55.680 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2025-04-11 19:10:22.008 [info] ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:markdown'
+2025-04-11 19:10:22.008 [info] ExtensionService#_doActivateExtension vscode.markdown-language-features, startup: false, activationEvent: 'onLanguage:markdown'
+2025-04-11 19:10:22.680 [info] ExtensionService#_doActivateExtension vscode.markdown-math, startup: false, activationEvent: 'api', root cause: vscode.markdown-language-features
+2025-04-11 19:12:39.148 [info] ExtensionService#_doActivateExtension vscode.typescript-language-features, startup: false, activationEvent: 'onLanguage:javascript'
+2025-04-11 19:13:22.383 [info] ExtensionService#_doActivateExtension vscode.npm, startup: false, activationEvent: 'onTerminalQuickFixRequest:ms-vscode.npm-command'
+2025-04-11 19:13:28.132 [info] ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:json'
+2025-04-11 19:13:28.133 [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:json'
+2025-04-11 19:13:33.319 [warning] [Decorations] CAPPING events from decorations provider vscode.git 10000
+2025-04-11 19:13:35.226 [warning] [Decorations] CAPPING events from decorations provider vscode.git 10000
